@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Timer } from './components/Timer'
 
 function App() {
   return (
-    <div className="App">
-    <h1>{count}</h1>
+    <div>
+      <Timer/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
