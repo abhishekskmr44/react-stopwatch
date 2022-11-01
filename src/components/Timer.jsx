@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export const Timer = () => {
 
@@ -13,16 +13,22 @@ const renders = useRef(0)
 
 const timerId = useRef(0)
 
+
+useEffect(()=>{
+  if(seconds>59){
+    setSeconds(0)
+    setMinutes(minutes+1)
+  }
+})
+
 const handleChange = (e) => {
   setRandomInput(e.target.value)
   renders.current++
-  if(seconds===(59)){
-    setSeconds(0)
-    setMinutes(prev=>prev+1)
-  }
+  
 }
 
 const startTimer = () => {
+  
   timerId.current = setInterval(()=>{
     renders.current++
     setSeconds(prev=>prev+1)
@@ -53,8 +59,8 @@ const resetTimer = () => {
     <br></br>
     <section>
     <button onClick={startTimer}>Start</button>
-    <button onClick={stopTimer} disabled={seconds==0 && minutes==0}>Stop</button>
-    <button onClick={resetTimer} disabled={seconds==0 && minutes==0}>Reset</button>
+    <button onClick={stopTimer} disabled={seconds===0 && minutes===0}>Stop</button>
+    <button onClick={resetTimer} disabled={seconds===0 && minutes===0}>Reset</button>
     </section>
     <br></br>
     <p>{randomInput}</p>
